@@ -2,8 +2,7 @@ import java.util.*;
 /*Given a Directed and Acyclic Graph having N vertices and M edges, 
 print topological sorting of the vertices.
 If there are multiple ordering print the lexicographically smallest one.
-Complexity : O(n) + (nlogn)//for lexicographically order.
-Graph is represented as Adjancency List
+Question for practice : https://www.hackerearth.com/practice/algorithms/graphs/topological-sort/tutorial/
 */
 
 class TopologicalSort
@@ -17,9 +16,9 @@ class TopologicalSort
 		{
 			v = sc.nextInt();
 			e = sc.nextInt();
-			ArrayList<LinkedList<Integer>> adjl = new ArrayList<LinkedList<Integer>>();
+			ArrayList<PriorityQueue<Integer>> adjl = new ArrayList<PriorityQueue<Integer>>();
 			for(i=0;i<=v;i++)
-				adjl.add(new LinkedList<Integer>());
+				adjl.add(new PriorityQueue<Integer>());
 			for(i=0;i<e;i++)
 			{
 				x = sc.nextInt();
@@ -35,14 +34,14 @@ class TopologicalSort
 		}
 	}
 	//Getting topological order
-	static Stack<Integer> topoSort(ArrayList<LinkedList<Integer>> adjl)
+	static Stack<Integer> topoSort(ArrayList<PriorityQueue<Integer>> adjl)
 	{
 		int i, v = adjl.size(),x,y,visitedCount = 0,time = 0;
 		boolean isVisited[] = new boolean[v];//checking whether vertex is visited or not
 		Stack<Integer> topo = new Stack<Integer>();//Storing final topological order
 		int fin_time[] = new int[v];
 		Stack<Integer> dfs = new Stack<Integer>();//using this for dfs traversal
-		LinkedList<Integer> ll;
+		PriorityQueue<Integer> pq;
 		dfs.push(v-1);
 		while(!dfs.isEmpty())
 		{
@@ -51,12 +50,10 @@ class TopologicalSort
 			{
 				dfs.push(x);
 				++time;
-				ll = adjl.get(x);
-				Collections.sort(ll);
-				Iterator<Integer> itr = ll.iterator();
-				while(itr.hasNext())
+				pq = adjl.get(x);
+				while(!pq.isEmpty())
 				{
-					y = itr.next();
+					y = pq.poll();
 					if(!isVisited[y])
 						dfs.push(y);
 				}

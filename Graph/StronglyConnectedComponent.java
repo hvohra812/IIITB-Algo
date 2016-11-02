@@ -1,7 +1,4 @@
 import java.util.*;
-
-/**/
-
 class StronglyConnectedComponent
 {
 	public static void main(String args[])
@@ -179,4 +176,16 @@ class StronglyConnectedComponent
 2 4
 4 5
 1
+Sample Output 
+7 10 9 8
+11
+1 3 2
+4 6 5
+scc = 4
+------------------------------------
+1 3 2
+4
+5
+scc = 3
+------------------------------------
 */

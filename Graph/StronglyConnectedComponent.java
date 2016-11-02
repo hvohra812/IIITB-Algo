@@ -141,7 +141,6 @@ class StronglyConnectedComponent
 				}		
 			}
 		}
-		//pr(topo+"");
 		return topo;
 	}
 
